@@ -13,7 +13,7 @@ Core i9-9980X CPU
 
 *note that even with the above HW, training may take 13-30+ days to complete due to exhaustive brute-force keypoint matching*
 
-#SOFTWARE
+# SOFTWARE
 python packages are detailed separately in `requirements.txt`
 
 ```
@@ -22,7 +22,7 @@ CUDA 10.0
 cuddn 7.3
 ```
 
-#DATA SETUP
+# DATA SETUP
 ```
 mkdir -p whale/input
 cd whale/input
@@ -38,7 +38,7 @@ unzip mask_predictions_train_known_4.zip
 - copy all images !=new_whale from train into the folder: train_specific
 - copy all images from train into folder: val
 
-#Keypoint matching:
+# Keypoint matching:
 ```
 cd kps
 python index_features_2kp.py --dataset ../input/train_specific --features-db train --mask-db ../input/mask_predictions_train_known_4
@@ -46,7 +46,7 @@ python index_features_2kp.py --dataset ../input/test --features-db test --mask-d
 python kp_matching.py
 ```
 
-#Base model training
+# Base model training
 **note:** for this step training is done with close attention to training/val loss and final checkpoints need to be selected at the end of each training cycle and the filenames put back into the training files at the appropriate insertion points. One set of train and inference files are included here.  To replicate the solution results, please substiture DenseNet121, Resnet50, and InceptionV3 as the basenetworks and run each for both train and inference (6 total runs: 3 networks x (train + inference).
 
 ```
@@ -55,7 +55,7 @@ python densenet121_200_train.py
 python densenet121_422_train.py
 ```
 
-#Siamese model training
+# Siamese model training
 **note:** in this step as well, the output of the previous steps (which can't be predetermined due to checkpoint number and val_loss in file name) will need to be inserted into the py files before running
 One set of train and inference files are included here.  To replicate the solution results, please substiture DenseNet121, Resnet50, and InceptionV3 as the basenetworks and run each for both train and inference (6 total runs: 3 networks x (train + inference).
 
@@ -64,7 +64,7 @@ cd ../siamese
 python siamese_train.py
 python siamese_inference.py
 ```
-#Ensemble
+# Ensemble
 **note:*** in this step as well, the output of the previous steps
 
 ```
